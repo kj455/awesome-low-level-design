@@ -73,9 +73,9 @@ func TestParkingLot(t *testing.T) {
 		},
 	}
 
-	v1 := &Vehicle{id: VehicleID(1), typ: VehicleCar}
-	v2 := &Vehicle{id: VehicleID(2), typ: VehicleMotorCycle}
-	v3 := &Vehicle{id: VehicleID(3), typ: VehicleTruck}
+	v1 := &Car{id: VehicleID(1)}
+	v2 := &MotorCycle{id: VehicleID(2)}
+	v3 := &Truck{id: VehicleID(3)}
 
 	v1ID, err := parkingLot.entry(v1)
 	assert.NoError(t, err)
@@ -86,6 +86,11 @@ func TestParkingLot(t *testing.T) {
 	v3ID, err := parkingLot.entry(v3)
 	assert.NoError(t, err)
 	assert.Equal(t, id7, v3ID)
+
+	assert.Equal(t, `X..
+X..
+X..
+`, parkingLot.formatSlotStatus())
 
 	assert.NoError(t, parkingLot.exit(v1ID))
 	assert.NoError(t, parkingLot.exit(v2ID))
