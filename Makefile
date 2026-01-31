@@ -1,7 +1,7 @@
 .PHONY: lld
 
 lld:
-	@bash scripts/lld.sh $(filter-out $@,$(MAKECMDGOALS))
+	@cd scripts/lld && go run . $(filter-out $@,$(MAKECMDGOALS))
 
 %:
 	@:
